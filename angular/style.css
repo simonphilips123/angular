@@ -41,9 +41,34 @@ h1{
 
 /* practise-set3-01 */
 
-div{
+/* div{
     height: 100px;
     width: 100px;
     background-color: green;
     border-radius: 50%;
+} */
+
+/* practise-set3-02 */
+
+*{
+    padding: 0;
+    margin: 0;
+    color: white;
+}
+
+#nav-bar{
+    background-color: black;
+    height: 60px;
+
+}
+
+button{
+    background-color: #f08804;
+}
+#logo{
+    color: #f08804;
+    font-size: 20px;
+}
+a{
+    margin-right: 200px;
 }
