@@ -32,9 +32,18 @@ h1{
 
 /* practise-set2-03 */
 
-#outer{
+/* #outer{
     font-size: 25px;
 }
 #inner{
     font-size: 10px;
+} */
+
+/* practise-set3-01 */
+
+div{
+    height: 100px;
+    width: 100px;
+    background-color: green;
+    border-radius: 50%;
 }
