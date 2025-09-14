@@ -18,7 +18,23 @@
 .box{
     color: green;
 } */
-
+/*
 button{
     background-color: green;
+} */
+/* body{
+    font-family: 'Times New Roman', Times ;
+}
+h1{
+    text-align: center;
+    text-transform: capitalize;
+} */
+
+/* practise-set2-03 */
+
+#outer{
+    font-size: 25px;
+}
+#inner{
+    font-size: 10px;
 }
