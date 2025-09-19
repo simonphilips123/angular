@@ -168,9 +168,9 @@
 #     n = len(shortest)
 
 #     # try all substring lengths from longest to shortest
-#     for length in range(n, 0, -1):
-#         for start in range(n - length + 1):   #total no of subarrays
-#             candidate = shortest[start:start+length]
+#     for length in range(n, 0, -1): # 5 4 3 2 1
+#         for start in range(n - length + 1):   # total no of subarrays
+#             candidate = shortest[start:start+length] # slicing[a:b]
 #             if all(candidate in s for s in strings):
 #                 return candidate  # first found = longest
 #     return "-1"
@@ -185,3 +185,77 @@
 
 # print(longest_common_substring(dna_strings))  # Output: TA
 # -------------------------------------------------------------
+
+
+# ## highest gc count(working meaningful)
+
+# def calculate_gc_count(dna):
+#     """Return (dna_string, GC_count)."""
+#     gc_count = 0
+#     for ch in dna:
+#         if ch == "G" or ch== "C":
+#             gc_count += 1
+#     return dna, gc_count
+
+
+# def highest_gc_content(dna_list):
+#     """Return the DNA string with highest GC% and its percentage."""
+#     highest_gc_dna = ""
+#     highest_gc_count = 0
+
+#     for dna in dna_list:
+#         current_dna, current_gc_count = calculate_gc_count(dna)
+#         if current_gc_count > highest_gc_count:
+#             highest_gc_count = current_gc_count
+#             highest_gc_dna = current_dna
+
+#     gc_percentage = (highest_gc_count / len(highest_gc_dna)) * 100
+#     return highest_gc_dna, gc_percentage
+
+
+# # Example usage
+# dna_samples = [
+#     "CCCffCGCGCGC",  # contains lowercase letters too
+#     "GCGC",
+#     "GC"
+# ]
+
+# result_dna, result_gc_percent = highest_gc_content(dna_samples)
+# print("DNA with highest GC content:", result_dna)
+# print("GC%:", "{:.2f}".format(result_gc_percent))
+
+
+#to calculat ehighest gc in list o fstrings
+
+#calculate in a string:
+#loop trough list of strings
+
+
+def calculate_gc_count(str):
+    gc_count=0
+    for ch in str:
+        if ch == "G" or ch == "C":
+            gc_count +=1
+        else:
+            continue
+    return str,gc_count
+
+def highest_gc_count(list_of_str):
+    highest_gc_count=0
+    highest_gc_str=""
+    for str in list_of_str:
+        curr_str,curr_count=calculate_gc_count(str)
+        if curr_count>highest_gc_count:
+            highest_gc_count=curr_count
+            highest_gc_str=curr_str
+
+    return highest_gc_str,round(highest_gc_count/len(highest_gc_str)*100,2)
+
+
+dna_samples = [
+    "CCCffCGCGCGC",  # contains lowercase letters too
+    "GCGC",
+    "GC"
+]
+
+print(highest_gc_count(dna_samples))
