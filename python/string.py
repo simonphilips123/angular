@@ -231,31 +231,31 @@
 #loop trough list of strings
 
 
-def calculate_gc_count(str):
-    gc_count=0
-    for ch in str:
-        if ch == "G" or ch == "C":
-            gc_count +=1
-        else:
-            continue
-    return str,gc_count
+# def calculate_gc_count(str):
+#     gc_count=0
+#     for ch in str:
+#         if ch == "G" or ch == "C":
+#             gc_count +=1
+#         else:
+#             continue
+#     return str,gc_count
 
-def highest_gc_count(list_of_str):
-    highest_gc_count=0
-    highest_gc_str=""
-    for str in list_of_str:
-        curr_str,curr_count=calculate_gc_count(str)
-        if curr_count>highest_gc_count:
-            highest_gc_count=curr_count
-            highest_gc_str=curr_str
+# def highest_gc_count(list_of_str):
+#     highest_gc_count=0
+#     highest_gc_str=""
+#     for str in list_of_str:
+#         curr_str,curr_count=calculate_gc_count(str)
+#         if curr_count>highest_gc_count:
+#             highest_gc_count=curr_count
+#             highest_gc_str=curr_str
 
-    return highest_gc_str,round(highest_gc_count/len(highest_gc_str)*100,2)
+#     return highest_gc_str,round(highest_gc_count/len(highest_gc_str)*100,2)
 
 
-dna_samples = [
-    "CCCffCGCGCGC",  # contains lowercase letters too
-    "GCGC",
-    "GC"
-]
+# dna_samples = [
+#     "CCCffCGCGCGC",  # contains lowercase letters too
+#     "GCGC",
+#     "GC"
+# ]
 
 print(highest_gc_count(dna_samples))
