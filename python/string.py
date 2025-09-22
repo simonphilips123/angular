@@ -258,4 +258,33 @@
 #     "GC"
 # ]
 
-print(highest_gc_count(dna_samples))
+# print(highest_gc_count(dna_samples))
+
+
+
+# def reverse_complement(dna):
+#     comp_map = {"A": "T", "T": "A", "C": "G", "G": "C"}
+#     return "".join(comp_map[base] for base in reversed(dna))
+
+
+# def find_reverse_palindromes(dna):
+#     results = []
+#     n = len(dna)
+
+#     for i in range(n):
+#         for length in range(4, 13):  # length between 4 and 12
+#             if i + length <= n:
+#                 substring = dna[i:i+length]
+#                 if substring == reverse_complement(substring):
+#                     # store (1-based position, length, substring itself)
+#                     results.append((i+1, length, substring))
+#     return results
+
+
+# # Example
+# dna_str = "TCAATGCATGCGGGTCTATATGCAT"
+# palindromes = find_reverse_palindromes(dna_str)
+
+# for pos, length, seq in palindromes:
+#     print(pos, length, seq)
+
