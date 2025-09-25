@@ -19,12 +19,42 @@
 #     return highestStr,percent
 
 # dna_samples = [
-#     "CCCffCGCGCGC",  # contains lowercase letters too
-#     "GCGC",
-#     "GC"
+# "CCTGCGGAAGATCGGCACTAGAATAGCCAGAACCGTTTCTCTGAGGCTTCCGGCCTTCCCTCCCACTAATAATTCTGAGG",
+# "CCATCGGTAGCGCATCCTTAGTCCAATTAAGTCCCTATCCAGGCGCTCCGCCGAAGGTCTATATCCATTTGTCAGCAGACACGC",
+# "CCACCCTCGTGGTATGGCTAGGCATTCAGGAACCGGAGAACGCTTCAGACCAGCCCGGACTGGGAACCTGCGGGCAGTAGGTGGAAT"
 # ]
 
 # print(highestGCCount(dna_samples))
+# -------------------------------------------------------------
+
+def gcContent(str):
+    gcCount=0;
+    for ch in str:
+        if ch =="G" or ch == "C":
+            gcCount += 1
+        else:
+            continue
+    return str,gcCount
+
+def lowestGcContent(listStr):
+    # highestGcCount=0
+    # highestGcStr=""
+    lowestGcStr, lowestGcCount = gcContent(listStr[0])
+    for str in listStr[1:]:
+        currStr,currGcCount=gcContent(str)
+        if currGcCount<lowestGcCount:
+            lowestGcCount=currGcCount
+            lowestGcStr=currStr
+    return lowestGcCount,lowestGcStr
+
+# Example usage
+dna_samples = [
+    "CCCffCGCGCGCcc",  # contains lowercase letters too
+    "GCGC",
+    "GC",
+]
+
+print(lowestGcContent(dna_samples))
 
 
 # -------------------------------------------------------------
@@ -54,27 +84,27 @@
 
 # -------------------------------------------------------------
 
-## reverse complement palindrome
+# ## reverse complement palindrome
 
-def revComplement(dna):
-    mapping={"A":"T","T":"A","C":"G","G":"C"}
-    return "".join(mapping[base] for base in reversed(dna))
+# def revComplement(dna):
+#     mapping={"A":"T","T":"A","C":"G","G":"C"}
+#     return "".join(mapping[base] for base in reversed(dna))
 
-def complementPalindrome(dna):
-    results=[]
-    n=len(dna)
+# def complementPalindrome(dna):
+#     results=[]
+#     n=len(dna)
 
-    for i in range(n):
-        for length in range(4,13):
-            if i+length<=n:
-                substring=dna[i:i+length]
-                if substring==revComplement(substring):
-                    print(substring)
-                    results.append((i+1,length,substring))
-    return results
+#     for i in range(n):
+#         for length in range(4,13):
+#             if i+length<=n:
+#                 substring=dna[i:i+length]
+#                 if substring==revComplement(substring):
+#                     print(substring)
+#                     results.append((i+1,length,substring))
+#     return results
 
-# # Example
-dna_str = "TCAATGCATGCGGGTCTATATGCAT"
-comp = complementPalindrome(dna_str)
+# # # Example
+# dna_str = "TCAATGCATGCGGGTCTATATGCAT"
+# comp = complementPalindrome(dna_str)
 
-print(comp)
+# print(comp)
