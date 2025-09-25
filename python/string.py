@@ -158,9 +158,8 @@
 # print(res)
 
 # CGATGGcc
-
-
-# # k-mer substring
+# -------------------------------------------------------------
+# longest common substring
 
 # def longest_common_substring(strings):
 #     # pick the shortest string (to minimize substring search space)
@@ -224,67 +223,39 @@
 # print("DNA with highest GC content:", result_dna)
 # print("GC%:", "{:.2f}".format(result_gc_percent))
 
+# --------------------------------------------------------------------
 
 #to calculat ehighest gc in list o fstrings
 
 #calculate in a string:
 #loop trough list of strings
 
-
-# def calculate_gc_count(str):
-#     gc_count=0
-#     for ch in str:
-#         if ch == "G" or ch == "C":
-#             gc_count +=1
-#         else:
-#             continue
-#     return str,gc_count
-
-# def highest_gc_count(list_of_str):
-#     highest_gc_count=0
-#     highest_gc_str=""
-#     for str in list_of_str:
-#         curr_str,curr_count=calculate_gc_count(str)
-#         if curr_count>highest_gc_count:
-#             highest_gc_count=curr_count
-#             highest_gc_str=curr_str
-
-#     return highest_gc_str,round(highest_gc_count/len(highest_gc_str)*100,2)
+def reverse_complement(dna):
+    comp_map = {"A": "T", "T": "A", "C": "G", "G": "C"}
+    return "".join(comp_map[base] for base in reversed(dna))
 
 
-# dna_samples = [
-#     "CCCffCGCGCGC",  # contains lowercase letters too
-#     "GCGC",
-#     "GC"
-# ]
+def find_reverse_palindromes(dna):
+    results = []
+    n = len(dna)
 
-# print(highest_gc_count(dna_samples))
-
-
-
-# def reverse_complement(dna):
-#     comp_map = {"A": "T", "T": "A", "C": "G", "G": "C"}
-#     return "".join(comp_map[base] for base in reversed(dna))
-
-
-# def find_reverse_palindromes(dna):
-#     results = []
-#     n = len(dna)
-
-#     for i in range(n):
-#         for length in range(4, 13):  # length between 4 and 12
-#             if i + length <= n:
-#                 substring = dna[i:i+length]
-#                 if substring == reverse_complement(substring):
-#                     # store (1-based position, length, substring itself)
-#                     results.append((i+1, length, substring))
-#     return results
+    for i in range(n):
+        for length in range(4, 13):  # length between 4 and 12
+            if i + length <= n:
+                substring = dna[i:i+length]
+                if substring == reverse_complement(substring):
+                    # store (1-based position, length, substring itself)
+                    results.append((i+1, length, substring))
+    return results
 
 
-# # Example
-# dna_str = "TCAATGCATGCGGGTCTATATGCAT"
-# palindromes = find_reverse_palindromes(dna_str)
+# Example
+dna_str = "TCAATGCATGCGGGTCTATATGCAT"
+palindromes = find_reverse_palindromes(dna_str)
 
-# for pos, length, seq in palindromes:
-#     print(pos, length, seq)
+for pos, length, seq in palindromes:
+    print(pos, length, seq)
 
+# ----------------------------------------------------------------------======
+
+# # k-mer substring
