@@ -159,244 +159,74 @@
 
 # CGATGGcc
 
-# -------------------------------------------------------------
+-------------------------------------------------------------
 
 
-# ## highest gc count(working meaningful)
+## highest gc count(working meaningful)
 
-# def calculate_gc_count(dna):
-#     """Return (dna_string, GC_count)."""
-#     gc_count = 0
-#     for ch in dna:
-#         if ch == "G" or ch== "C":
-#             gc_count += 1
-#     return dna, gc_count
-
-
-# def highest_gc_content(dna_list):
-#     """Return the DNA string with highest GC% and its percentage."""
-#     highest_gc_dna = ""
-#     highest_gc_count = 0
-
-#     for dna in dna_list:
-#         current_dna, current_gc_count = calculate_gc_count(dna)
-#         if current_gc_count > highest_gc_count:
-#             highest_gc_count = current_gc_count
-#             highest_gc_dna = current_dna
-
-#     gc_percentage = (highest_gc_count / len(highest_gc_dna)) * 100
-#     return highest_gc_dna, gc_percentage
+def calculate_gc_count(dna):
+    """Return (dna_string, GC_count)."""
+    gc_count = 0
+    for ch in dna:
+        if ch == "G" or ch== "C":
+            gc_count += 1
+    return dna, gc_count
 
 
-# # Example usage
-# dna_samples = [
-#     "CCCffCGCGCGC",  # contains lowercase letters too
-#     "GCGC",
-#     "GC"
-# ]
+def highest_gc_content(dna_list):
+    """Return the DNA string with highest GC% and its percentage."""
+    highest_gc_dna = ""
+    highest_gc_count = 0
 
-# result_dna, result_gc_percent = highest_gc_content(dna_samples)
-# print("DNA with highest GC content:", result_dna)
-# print("GC%:", "{:.2f}".format(result_gc_percent))
+    for dna in dna_list:
+        current_dna, current_gc_count = calculate_gc_count(dna)
+        if current_gc_count > highest_gc_count:
+            highest_gc_count = current_gc_count
+            highest_gc_dna = current_dna
 
-# --------------------------------------------------------------------
-# -------------------------------------------------------------
-# longest common substring
-
-# def longest_common_substring(strings):
-#     # pick the shortest string (to minimize substring search space)
-#     shortest = min(strings, key=len)
-#     n = len(shortest)
-
-#     # try all substring lengths from longest to shortest
-#     for length in range(n, 0, -1): # 5 4 3 2 1
-#         for start in range(n - length + 1):   # total no of subarrays
-#             candidate = shortest[start:start+length] # slicing[a:b]
-#             if all(candidate in s for s in strings):
-#                 return candidate  # first found = longest
-#     return "-1"
+    gc_percentage = (highest_gc_count / len(highest_gc_dna)) * 100
+    return highest_gc_dna, gc_percentage
 
 
-# # Example usage
-# dna_strings = [
-#     "GATTACA",
-#     "TAGACCA",
-#     "ATACA"
-# ]
+# Example usage
+dna_samples = [
+    "CCCffCGCGCGC",  # contains lowercase letters too
+    "GCGC",
+    "GC"
+]
 
-# print(longest_common_substring(dna_strings))  # Output: TA
+result_dna, result_gc_percent = highest_gc_content(dna_samples)
+print("DNA with highest GC content:", result_dna)
+print("GC%:", "{:.2f}".format(result_gc_percent))
 
-# -------------------------------------------------------------
+--------------------------------------------------------------------
+-------------------------------------------------------------
+longest common substring
 
-#calculate in a string:
-#loop trough list of strings
+def longest_common_substring(strings):
+    # pick the shortest string (to minimize substring search space)
+    shortest = min(strings, key=len)
+    n = len(shortest)
 
-# def reverse_complement(dna):
-#     comp_map = {"A": "T", "T": "A", "C": "G", "G": "C"}
-#     return "".join(comp_map[base] for base in reversed(dna))
-
-
-# def find_reverse_palindromes(dna):
-#     results = []
-#     n = len(dna)
-
-#     for i in range(n):
-#         for length in range(4, 13):  # length between 4 and 12
-#             if i + length <= n:
-#                 substring = dna[i:i+length]
-#                 if substring == reverse_complement(substring):
-#                     # store (1-based position, length, substring itself)
-#                     results.append((i+1, length, substring))
-#     return results
+    # try all substring lengths from longest to shortest
+    for length in range(n, 0, -1): # 5 4 3 2 1
+        for start in range(n - length + 1):   # total no of subarrays
+            candidate = shortest[start:start+length] # slicing[a:b]
+            if all(candidate in s for s in strings):
+                return candidate  # first found = longest
+    return "-1"
 
 
-# # Example
-# dna_str = "TCAATGCATGCGGGTCTATATGCAT"
-# palindromes = find_reverse_palindromes(dna_str)
+# Example usage
+dna_strings = [
+    "GATTACA",
+    "TAGACCA",
+    "ATACA"
+]
 
-# for pos, length, seq in palindromes:
-#     print(pos, length, seq)
+print(longest_common_substring(dna_strings))  # Output: TA
 
-# ----------------------------------------------------------------------======
-
-# # k-mer substring
-
-# def kmerCounts(dnaStr, k):
-#     n = len(dnaStr)
-#     kmers_count = {}  # dictionary to store counts
-
-#     for i in range(n - k + 1):
-#         kmer = dnaStr[i:i+k]
-#         if kmer in kmers_count:
-#             kmers_count[kmer] += 1
-#         else:
-#             kmers_count[kmer] = 1
-
-#     return kmers_count
-
-# # Example
-# dna_str = "ATCGATCGA"
-# k = 3
-# print(kmerCounts(dna_str, k))
-
-# ----------------------------------------------------------------------======
-
-# with open("/home/Simon.P/Downloads/test.vcf","r") as f:
-#     chr_records=[]
-#     for line in f:
-#         if line.startswith("##"):
-#             continue
-#         elif line.startswith("#"):
-#             header=line.strip().lstrip("#").split("\t")
-#             print(header)
-#             break
-
-# ----------------------------------------------------------------------======
-
-# standard=['CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT']
-# for i in header:
-#     if i in standard:
-#         print("standard")
-#     else:
-#         print("not")
-# ----------------------------------------------------------------------======
-
-# def is_vcf_sorted(vcf_file):
-#     prev_chrom = None
-#     prev_pos = -1
-
-#     with open(vcf_file, "r") as f:
-#         for line in f:
-#             if line.startswith("#"):
-#                 continue  # skip header/meta lines
-
-#             parts = line.strip().split("\t")
-#             chrom, pos = parts[0], int(parts[1])
-
-#             if prev_chrom is None:  # first record
-#                 prev_chrom, prev_pos = chrom, pos
-#                 continue
-
-#             # If same chromosome, positions must be ascending
-#             if chrom == prev_chrom:
-#                 if pos < prev_pos:
-#                     return False, f"Unsorted at {chrom}:{pos} after {prev_chrom}:{prev_pos}"
-
-#             # If chromosome changes, rely on lexicographic order
-#             elif chrom < prev_chrom:
-#                 return False, f"Chromosome order incorrect: {chrom} after {prev_chrom}"
-
-#             prev_chrom, prev_pos = chrom, pos
-
-#     return True, "VCF is sorted "
-# vcf_path = "/home/Simon.P/Downloads/test.vcf"
-# status, message = is_vcf_sorted(vcf_path)
-# print(message)
-
-
-# ----------------------------------------------------------------------======
-
-
-# chrom_order={str(i): i for i in range(1,23)}
-# print(chrom_order)
-# chrom_order.update({"X":23,"Y":24,"MT":25})
-# print(chrom_order)
-
-
-# last_chrom= None
-# with open("/home/Simon.P/Downloads/test.vcf","r") as f:
-#     for line in f:
-#         if line.startswith("#"):
-#             continue
-
-#         fields=line.strip().split("\t")
-#         chrom=fields[0]
-
-#         if chrom_order[chrom]<chrom_order[last_chrom]:
-#             print("not sorted")
-# ----------------------------------------------------------------------======
-
-chrom_order = {str(i): i for i in range(1, 23)}
-chrom_order.update({"X": 23, "Y": 24, "MT": 25, "M": 25, "chrM": 25})
-
-last_chrom = None
-last_pos = -1
-
-with open("/home/Simon.P/Downloads/test.vcf", "r") as f:
-    for line in f:
-        if line.startswith("#"):
-            continue
-
-        fields = line.strip().split("\t")
-        chrom = fields[0].replace("chr", "") if fields[0].startswith("chr") else fields[0]
-        pos = int(fields[1])
-
-        # Normalize chromosome name to match chrom_order keys
-        if fields[0] in ["chrM", "MT", "M"]:
-            chrom = "MT"
-
-        # Skip unknown chromosomes
-        if chrom not in chrom_order:
-            print(f"Skipping unknown chromosome: {chrom}")
-            continue
-
-        if last_chrom is None:
-            last_chrom, last_pos = chrom, pos
-            continue
-
-        # Check chromosome order
-        if chrom_order[chrom] < chrom_order[last_chrom]:
-            print(f"Not sorted: {chrom}:{pos} comes after {last_chrom}:{last_pos}")
-            break
-
-        # If same chromosome, check position order
-        if chrom == last_chrom and pos < last_pos:
-            print(f"Not sorted: {chrom}:{pos} comes after {chrom}:{last_pos}")
-            break
-
-        last_chrom, last_pos = chrom, pos
-
-# ----------------------------------------------------------------------======
+----------------------------------------------------------------------======
 def longestRepeatedSubstring(dnaStr):
     n = len(dnaStr)
 
@@ -409,3 +239,196 @@ def longestRepeatedSubstring(dnaStr):
             seen.add(substr)
             print(seen)
     return ""
+
+ex:
+dnas="ATACATACA"
+op:ATACA
+-------------------------------------------------------------
+
+calculate in a string:
+loop trough list of strings
+
+def reverse_complement(dna):
+    comp_map = {"A": "T", "T": "A", "C": "G", "G": "C"}
+    return "".join(comp_map[base] for base in reversed(dna))
+
+
+def find_reverse_palindromes(dna):
+    results = []
+    n = len(dna)
+
+    for i in range(n):
+        for length in range(4, 13):  # length between 4 and 12
+            if i + length <= n:
+                substring = dna[i:i+length]
+                if substring == reverse_complement(substring):
+                    # store (1-based position, length, substring itself)
+                    results.append((i+1, length, substring))
+    return results
+
+
+# Example
+dna_str = "TCAATGCATGCGGGTCTATATGCAT"
+palindromes = find_reverse_palindromes(dna_str)
+
+for pos, length, seq in palindromes:
+    print(pos, length, seq)
+
+----------------------------------------------------------------------======
+3. Given a DNA sequence, find the longest substring which is a reverse complement palindrome.
+
+
+def revComp(dna):
+    mapping = {"A":"T", "T":"A", "C":"G", "G":"C"}
+    return "".join(mapping[base] for base in reversed(dna))
+
+def revCompPal(dna):
+    longest = ""  # track longest palindrome
+    n = len(dna)
+
+    for i in range(n):
+        for length in range(4, n - i + 1):  # allow up to full length
+            subs = dna[i:i+length]
+            if subs == revComp(subs):
+                if len(subs) > len(longest):
+                    longest = subs  # update if longer
+    return longest
+----------------------------------------------------------------------======
+
+# k-mer substring
+
+def kmerCounts(dnaStr, k):
+    n = len(dnaStr)
+    kmers_count = {}  # dictionary to store counts
+
+    for i in range(n - k + 1):
+        kmer = dnaStr[i:i+k]
+        if kmer in kmers_count:
+            kmers_count[kmer] += 1
+        else:
+            kmers_count[kmer] = 1
+
+    return kmers_count
+
+# Example
+dna_str = "ATCGATCGA"
+k = 3
+print(kmerCounts(dna_str, k))
+
+----------------------------------------------------------------------======
+
+with open("/home/Simon.P/Downloads/test.vcf","r") as f:
+    chr_records=[]
+    for line in f:
+        if line.startswith("##"):
+            continue
+        elif line.startswith("#"):
+            header=line.strip().lstrip("#").split("\t")
+            print(header)
+            break
+
+
+standard=['CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT']
+for i in header:
+    if i in standard:
+        print("standard")
+    else:
+        print("not")
+----------------------------------------------------------------------======
+
+----------------------------------------------------------------------======
+
+
+chrom_order={str(i): i for i in range(1,23)}
+# print(chrom_order)
+chrom_order.update({"X":23,"Y":24,"MT":25})
+# print(chrom_order)
+
+
+last_chrom= None
+with open("/home/Simon.P/Downloads/test.vcf","r") as f:
+    for line in f:
+        if line.startswith("#"):
+            continue
+
+        fields=line.strip().split("\t")
+        chrom=fields[0]
+
+        chrom_clean = chrom.upper()
+        if chrom_clean.startswith("CHR"):
+            chrom_clean = chrom_clean[3:]  # remove 'CHR' prefix
+        if chrom_clean == "M":             # map M → MT
+            chrom_clean = "MT"
+
+        if last_chrom is not None:
+            if chrom_order[chrom_clean]<chrom_order[last_chrom]:
+                print("not sorted")
+        last_chrom = chrom_clean
+----------------------------------------------------------------------======
+
+
+----------------------------------------------------------------------======
+
+chrom_order = {str(i): i for i in range(1, 23)}
+chrom_order.update({"X": 23, "Y": 24, "MT": 25})
+
+last_chrom = None
+is_sorted = True   # assume sorted unless proven otherwise
+
+with open("/home/Simon.P/Downloads/test.vcf", "r") as f:
+    for line in f:
+        if line.startswith("#"):
+            continue
+
+        fields = line.strip().split("\t")
+        chrom = fields[0]
+
+        chrom_clean = chrom.upper()
+        if chrom_clean.startswith("CHR"):
+            chrom_clean = chrom_clean[3:]
+        if chrom_clean == "M":
+            chrom_clean = "MT"
+
+        if last_chrom is not None:
+            if chrom_order[chrom_clean] < chrom_order[last_chrom]:
+                is_sorted = False
+                break   # stop early if unsorted
+        last_chrom = chrom_clean
+
+# 🔹 Final result
+if is_sorted:
+    print("VCF is sorted ✅")
+else:
+    print("VCF is NOT sorted ❌")
+
+----------------------------------------------------------------------======
+
+
+def get_lcs(str1, str2, len1, len2):
+    """
+    Returns the Longest Common Subsequence (LCS) string between str1 and str2.
+    """
+    # Base case: if either string is empty
+    if len1 == 0 or len2 == 0:
+        return ""
+
+    # If last characters match
+    if str1[len1 - 1] == str2[len2 - 1]:
+        return get_lcs(str1, str2, len1 - 1, len2 - 1) + str1[len1 - 1]
+
+    # If last characters do not match, take the longer LCS
+    else:
+        lcs1 = get_lcs(str1, str2, len1 - 1, len2)
+        lcs2 = get_lcs(str1, str2, len1, len2 - 1)
+        return lcs1 if len(lcs1) > len(lcs2) else lcs2
+
+
+# Example
+first_string = "AGGTAB"
+second_string = "GXTXAYB"
+
+# Get LCS string
+lcs_string = get_lcs(first_string, second_string, len(first_string), len(second_string))
+# Print both
+print("Longest Common Subsequence:", lcs_string)
+print("Length of LCS:", len(lcs_string))
