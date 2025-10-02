@@ -293,6 +293,11 @@ def revCompPal(dna):
                 if len(subs) > len(longest):
                     longest = subs  # update if longer
     return longest
+
+
+dna = "TCAATGCATGCGGGTCTATATGCAT"
+print(revCompPal(dna))
+ATGCAT
 ----------------------------------------------------------------------======
 
 # k-mer substring
