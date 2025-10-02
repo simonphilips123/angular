@@ -57,7 +57,7 @@ h1{
 }
 
 #nav-bar{
-    background-color: black;
+    background-color:  #0f1111;
     height: 60px;
 
 }
@@ -71,4 +71,20 @@ button{
 }
 a{
     margin-right: 200px;
+}
+#content{
+    height: 867px;
+    color: black;
+    background-color: yellow;
+}
+.contentBox{
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+    display: inline-block;
+}
+footer{
+    color: white;
+    background-color: #0f1111;
+    text-align: center;
 }
