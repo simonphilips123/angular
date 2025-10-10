@@ -243,6 +243,27 @@ def longestRepeatedSubstring(dnaStr):
 ex:
 dnas="ATACATACA"
 op:ATACA
+----------------------------------------------------------------------======
+
+3. Longest Substring Without Repeating Characters
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        n=len(s)
+        left = 0
+        for length in range(n,0,-1):
+            for start in range(n-length+1):
+                candidate=s[start:start+length]
+                seen = set()
+                valid = True
+                for ch in candidate:
+                    if ch in seen:           # duplicate found
+                        valid = False
+                        break
+                    seen.add(ch)
+                if valid:                    # all unique
+                    return length
+        return 0
 -------------------------------------------------------------
 
 calculate in a string:
@@ -437,3 +458,6 @@ lcs_string = get_lcs(first_string, second_string, len(first_string), len(second_
 # Print both
 print("Longest Common Subsequence:", lcs_string)
 print("Length of LCS:", len(lcs_string))
+
+----------------------------------------------------------------------======
+

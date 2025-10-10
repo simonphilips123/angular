@@ -27,34 +27,34 @@
 # print(highestGCCount(dna_samples))
 # -------------------------------------------------------------
 
-def gcContent(str):
-    gcCount=0;
-    for ch in str:
-        if ch =="G" or ch == "C":
-            gcCount += 1
-        else:
-            continue
-    return str,gcCount
+# def gcContent(str):
+#     gcCount=0;
+#     for ch in str:
+#         if ch =="G" or ch == "C":
+#             gcCount += 1
+#         else:
+#             continue
+#     return str,gcCount
 
-def lowestGcContent(listStr):
-    # highestGcCount=0
-    # highestGcStr=""
-    lowestGcStr, lowestGcCount = gcContent(listStr[0])
-    for str in listStr[1:]:
-        currStr,currGcCount=gcContent(str)
-        if currGcCount<lowestGcCount:
-            lowestGcCount=currGcCount
-            lowestGcStr=currStr
-    return lowestGcCount,lowestGcStr
+# def lowestGcContent(listStr):
+#     # highestGcCount=0
+#     # highestGcStr=""
+#     lowestGcStr, lowestGcCount = gcContent(listStr[0])
+#     for str in listStr[1:]:
+#         currStr,currGcCount=gcContent(str)
+#         if currGcCount<lowestGcCount:
+#             lowestGcCount=currGcCount
+#             lowestGcStr=currStr
+#     return lowestGcCount,lowestGcStr
 
-# Example usage
-dna_samples = [
-    "CCCffCGCGCGCcc",  # contains lowercase letters too
-    "GCGC",
-    "GC",
-]
+# # Example usage
+# dna_samples = [
+#     "CCCffCGCGCGCcc",  # contains lowercase letters too
+#     "GCGC",
+#     "GC",
+# ]
 
-print(lowestGcContent(dna_samples))
+# print(lowestGcContent(dna_samples))
 
 
 # -------------------------------------------------------------
@@ -108,3 +108,36 @@ print(lowestGcContent(dna_samples))
 # comp = complementPalindrome(dna_str)
 
 # print(comp)
+
+
+# def rotate(s,goal):
+
+#     if len(s) != len(goal):
+#         return False
+#     for start in range(len(s)):
+#         first=s[start:]
+#         second=s[:start]
+#         rot=first+second
+#         if rot==goal:
+#             return True
+#     return False
+# s="abcde"
+# goal="cdeba"
+# print(rotate(s,goal))
+
+# def maxRepeating( sequence: str, word: str) -> int:
+#     max_count=0
+#     max_possible = len(sequence) // len(word)
+#     print(max_possible)
+#     for count in range(1, max_possible + 1):
+#         repeated=word*count
+#         print("rep:"+repeated)
+#         if repeated in sequence:
+#             max_count=count
+#         else:
+#             break
+#     return max_count
+
+# s="ababc"
+# w="ab"
+# print(maxRepeating(s,w))
